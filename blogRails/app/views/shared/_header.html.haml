@@ -1,0 +1,30 @@
+%nav.navbar.navbar-default.navbar-fixed-top
+  .container-fluid
+    .navbar-header
+      %button.navbar-toggle.collapsed{"data-target" => "#bs-example-navbar-collapse-1", "data-toggle" => "collapse", :type => "button"}
+        %span.sr-only Toggle navigation
+        %span.icon-bar
+        %span.icon-bar
+        %span.icon-bar
+      %a.navbar-brand{:href => root_path}
+        = 'Blog'
+
+      %form.navbar-form.navbar-left{:role => "search"}
+        = form_tag posts_path, method: :get, class:'form form-hroizontal'  do
+          .form-group
+            .col-xs-10
+              = text_field_tag 'keywords', nil, class: 'form-control', placeholder: "search"
+
+      - if current_user
+        %ul.nav.navbar-nav.navbar-right
+          %li
+            %a{href: upload_path} Uploader une image
+          %li
+            %a.fa.fa-sign-out{href: destroy_user_session_path}
+
+      - else
+        %ul.nav.navbar-nav.navbar-right
+          %li
+            %a{href: new_user_registration_path} Inscription
+          %li
+            %a{href: new_user_session_path} Connexion
