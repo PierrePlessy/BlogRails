@@ -1,4 +1,4 @@
-class Messenger
+class Comment
 
   attr_accessor :errors
 

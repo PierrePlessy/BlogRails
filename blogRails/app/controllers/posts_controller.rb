@@ -24,18 +24,20 @@ class PostsController < ApplicationController
   end
 
   def comment
-    com = Comment.new(
-      name: params[:name],
-      email: params[:email],
-      content: params[:content]
-    ).call
-    
-    raise com.inspect
-    if com.save
-      render json: {success: false, errors: message.errors}.to_json, status: 422
-    else
-      redirect_to post_path(params[:id])
-    end
+    # com = Comment.new(
+    #   name: params[:name],
+    #   email: params[:email],
+    #   content: params[:content]
+    # ).call
+    #
+    # raise com.inspect
+    # if com.save
+    #   render json: {success: false, errors: message.errors}.to_json, status: 422
+    # else
+    #   redirect_to post_path(params[:id])
+    # end
+
+    redirect_to post_path(params[:id])
   end
 
 private
