@@ -1,0 +1,29 @@
+.row
+  .col-xs-8.col-xs-offset-2
+    %h3= 'Nouveau Post'
+-# - if @post.errors.any?
+-#   .row
+-#     .col-xs-8.col-xs-offset-2.errors
+-#       %h2
+-#         = pluralize(@listing.errors.count, "error")
+-#         = t('errors', count: @post.errors.count)
+-#       %ul
+-#         - @post.errors.full_messages.each do |msg|
+-#           %li= msg
+.row
+  .col-xs-8.col-xs-offset-2
+    = form_for @post, class: 'form', html: {multipart: true} do |f|
+      .form-group
+        = f.label :title, class: 'form-label required'
+        = f.text_field :title, class: 'form-control'
+      .form-group
+        = f.label :category_id, class: 'form-label required'
+        = f.collection_select :category_id, Category.all, :id, :name, {}, {class: 'form-control'}
+
+      .form-group
+        = f.label :content, class: 'form-label required'
+        = f.text_field :content, class: 'form-control'
+
+      .form-group
+        -# %span= t('required_field')
+        = f.submit "Publier le Post", class: 'btn btn-primary pull-right'

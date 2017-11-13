@@ -18,13 +18,11 @@
       - if current_user
         %ul.nav.navbar-nav.navbar-right
           %li
-            %a{href: upload_path} Uploader une image
+            %a{href: upload_path} Ajouter un Post
           %li
             %a.fa.fa-sign-out{href: destroy_user_session_path}
 
       - else
         %ul.nav.navbar-nav.navbar-right
-          %li
-            %a{href: new_user_registration_path} Inscription
           %li
             %a{href: new_user_session_path} Connexion

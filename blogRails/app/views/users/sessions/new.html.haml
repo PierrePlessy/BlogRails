@@ -1,7 +1,6 @@
 .row
   .col-xs-10.col-xs-offset-1
     %h3 Connexion
-
     = form_for(resource, as: resource_name, url: session_path(resource_name), html: { role: 'form' }) do |f|
       .form-group
         %label.control-label

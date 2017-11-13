@@ -5,6 +5,10 @@ class PostsController < ApplicationController
     # .search(params)
   end
 
+  def show
+    @post = Post.find(params[:id])
+  end
+
   def new
     @post = Post.new
   end
@@ -12,10 +16,25 @@ class PostsController < ApplicationController
   def create
     @post = Post.new(post_params)
 
-    if @picture.save
-      redirect_to '/'
+    if @post.save
+      redirect_to root_path
     else
       redirect_to upload_path
+    end
+  end
+
+  def comment
+    com = Comment.new(
+      name: params[:name],
+      email: params[:email],
+      content: params[:content]
+    ).call
+    
+    raise com.inspect
+    if com.save
+      render json: {success: false, errors: message.errors}.to_json, status: 422
+    else
+      redirect_to post_path(params[:id])
     end
   end
 

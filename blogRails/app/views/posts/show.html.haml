@@ -1,0 +1,33 @@
+.row
+  .col-xs-12
+    %h2= @post.title
+    %p= @post.content
+
+  .col-xs-8.col-xs-offset-2
+    %h3
+      = "Commentaire"
+
+    %p
+      - Comment.all.each do |comment|
+        -if comment.post_id == @post.id
+          %div
+            = comment.name
+          %div
+            = comment.email
+          %div
+            = comment.content
+
+    .col-xs-12
+      = form_for comment_path, class: 'form', html: {multipart: true} do |f|
+        .form-group
+          = f.label :name, class: 'form-label required'
+          = f.text_field :name, class: 'form-control'
+        .form-group
+          = f.label :email, class: 'form-label required'
+          = f.email_field :email, class: 'form-control'
+        .form-group
+          = f.label :content, class: 'form-label required'
+          = f.text_field :content, class: 'form-control'
+
+        .form-group
+          = f.submit "Publier le Commentaire", class: 'btn btn-primary pull-right'
